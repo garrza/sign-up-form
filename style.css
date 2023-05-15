@@ -1,24 +1,29 @@
 :root {
-    --main-light: #d8d8da;
+    --main-light: #FAF9F6;
 }
 
-html, body {
+html,
+body {
     color-scheme: light dark;
     margin: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10vw;
 }
 
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 1.125rem;
+    background-color: var(--main-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 
 header {
     width: 100%;
-    border: 1px solid;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,14 +34,289 @@ header {
     color: white;
     font-size: calc(2.5rem + 1vw);
 }
+
+#left-arrow {
+    position: relative;
+    float: left;
+    max-width: 5vw;
+}
+
+#right-arrow {
+    position: relative;
+    float: left;
+    max-width: 5vw;
+}
+
 #header-background {
     position: relative;
     float: left;
-    max-width: 70%;
+    max-width: 50%;
+    min-width: 350px;
+}
+
+.heart {
+    float: left;
+    max-width: 6vw;
 }
 
 main {
-    border: 1px solid;
-    width: min(65ch,100% -4rem);
-    margin: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+}
+
+#form {
+    color: black;
+    position: relative;
+    padding-top: 4vw;
+    padding-bottom: 4vw;
+    padding-left: 1vw;
+    padding-right: 1VW;
+    width: 750%;
+    font-size: calc(1vw + 1rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+    background: #feff9c;
+    border-radius: 2px;
+}
+
+#form::before,
+#form::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    width: 40%;
+    height: 20px;
+    background: red;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .7);
+    z-index: -1;
+    transition: all .3s ease-in-out;
+}
+
+#form::before {
+    left: 15px;
+    transform: skew(-5deg) rotate(-5deg);
+}
+
+#form::after {
+    right: 15px;
+    transform: skew(5deg) rotate(5deg);
+}
+
+#form:hover::before,
+#form:hover::after {
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .4);
+}
+
+#form:hover::before {
+    left: 5px;
+}
+
+#form:hover::after {
+    right: 5px;
+}
+
+input {
+    width: 48vw;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 3.5vw
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.button {
+    --primary: #2979ff;
+    --primary-dark: #2c66fe;
+    --primary-darkest: #013ca2;
+    --text: var(--main-light);
+    --text-opacity: 1;
+    --success: green;
+    --success-scale: .2;
+    --success-opacity: 0;
+    --border-radius: 3;
+    --overflow: hidden;
+    --rotate: 0;
+    --plane-x: 0;
+    --plane-y: 0;
+    --plane-opacity: 1;
+    --left-wing-background: var(--primary);
+    --left-wing-first-x: 0;
+    --left-wing-first-y: 0;
+    --left-wing-second-x: 50;
+    --left-wing-second-y: 0;
+    --left-wing-third-x: 0;
+    --left-wing-third-y: 100;
+    --left-body-background: var(--primary);
+    --left-body-first-x: 50;
+    --left-body-first-y: 0;
+    --left-body-second-x: 50;
+    --left-body-second-y: 100;
+    --left-body-third-x: 0;
+    --left-body-third-y: 100;
+    --right-wing-background: var(--primary);
+    --right-wing-first-x: 50;
+    --right-wing-first-y: 0;
+    --right-wing-second-x: 100;
+    --right-wing-second-y: 0;
+    --right-wing-third-x: 100;
+    --right-wing-third-y: 100;
+    --right-body-background: var(--primary);
+    --right-body-first-x: 50;
+    --right-body-first-y: 0;
+    --right-body-second-x: 50;
+    --right-body-second-y: 100;
+    --right-body-third-x: 100;
+    --right-body-third-y: 100;
+    display: block;
+    cursor: pointer;
+    position: relative;
+    border: 0;
+    padding: 8px 0;
+    min-width: 100px;
+    text-align: center;
+    margin: 0;
+    line-height: 24px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 14px;
+    background: none;
+    outline: none;
+    color: var(--text);
+    transform: rotate(calc(var(--rotate) * 1deg)) translateZ(0);
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.button .left,
+.button .right {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    opacity: var(--plane-opacity);
+    transform: translate(calc(var(--plane-x) * 1px), calc(var(--plane-y) * 1px)) translateZ(0);
+}
+
+.button .left:before,
+.button .left:after,
+.button .right:before,
+.button .right:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: calc(var(--border-radius) * 1px);
+    transform: translate(var(--x, 0.4%), var(--y, 0)) translateZ(0);
+    z-index: var(--z-index, 2);
+    background: var(--background, var(--left-wing-background));
+    -webkit-clip-path: polygon(calc(var(--first-x, var(--left-wing-first-x)) * 1%) calc(var(--first-y, var(--left-wing-first-y)) * 1%), calc(var(--second-x, var(--left-wing-second-x)) * 1%) calc(var(--second-y, var(--left-wing-second-y)) * 1%), calc(var(--third-x, var(--left-wing-third-x)) * 1%) calc(var(--third-y, var(--left-wing-third-y)) * 1%));
+    clip-path: polygon(calc(var(--first-x, var(--left-wing-first-x)) * 1%) calc(var(--first-y, var(--left-wing-first-y)) * 1%), calc(var(--second-x, var(--left-wing-second-x)) * 1%) calc(var(--second-y, var(--left-wing-second-y)) * 1%), calc(var(--third-x, var(--left-wing-third-x)) * 1%) calc(var(--third-y, var(--left-wing-third-y)) * 1%));
+}
+
+.button .left:after {
+    --x: 0;
+    --z-index: 1;
+    --background: var(--left-body-background);
+    --first-x: var(--left-body-first-x);
+    --first-y: var(--left-body-first-y);
+    --second-x: var(--left-body-second-x);
+    --second-y: var(--left-body-second-y);
+    --third-x: var(--left-body-third-x);
+    --third-y: var(--left-body-third-y);
+}
+
+.button .right:before {
+    --x: -.4%;
+    --z-index: 2;
+    --background: var(--right-wing-background);
+    --first-x: var(--right-wing-first-x);
+    --first-y: var(--right-wing-first-y);
+    --second-x: var(--right-wing-second-x);
+    --second-y: var(--right-wing-second-y);
+    --third-x: var(--right-wing-third-x);
+    --third-y: var(--right-wing-third-y);
+}
+
+.button .right:after {
+    --x: 0;
+    --z-index: 1;
+    --background: var(--right-body-background);
+    --first-x: var(--right-body-first-x);
+    --first-y: var(--right-body-first-y);
+    --second-x: var(--right-body-second-x);
+    --second-y: var(--right-body-second-y);
+    --third-x: var(--right-body-third-x);
+    --third-y: var(--right-body-third-y);
+}
+
+.button span {
+    display: block;
+    position: relative;
+    z-index: 4;
+    opacity: var(--text-opacity);
+}
+
+.button span.success {
+    z-index: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 8px;
+    transform: rotate(calc(var(--rotate) * -1deg)) scale(var(--success-scale)) translateZ(0);
+    opacity: var(--success-opacity);
+    color: var(--success);
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body .dribbble {
+    position: fixed;
+    display: block;
+    right: 20px;
+    bottom: 20px;
+}
+
+body .dribbble img {
+    display: block;
+    height: 28px;
+}
+
+body .twitter {
+    position: fixed;
+    display: block;
+    right: 64px;
+    bottom: 14px;
+}
+
+body .twitter svg {
+    width: 32px;
+    height: 32px;
+    fill: #1da1f2;
 }
